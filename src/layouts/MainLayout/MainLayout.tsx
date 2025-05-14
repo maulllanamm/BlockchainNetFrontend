@@ -8,11 +8,36 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
+type TransactionType = {
+  PublicKey: string;
+  Signature: string;
+  Sender: string;
+  Receiver: string;
+  Amount: number;
+};
+
+type BlockchainType = {
+  Timestamp: string;
+  Transactions: TransactionType[];
+  PreviousHash: string;
+  Hash: string;
+  nonce: number;
+};
+
+type LoadingState = {
+  blockchain: boolean;
+  pendingTransactions: boolean;
+  mineBlock: boolean;
+  addTransaction: boolean;
+};
+
 function MainLayout() {
-  const [activeTab, setActiveTab] = useState("Blockchain");
-  const [blockchain, setBlockchain] = useState([]);
-  const [expandedBlocks, setExpandedBlocks] = useState({});
-  const [loading, setLoading] = useState({
+  const [activeTab, setActiveTab] = useState<string>("Blockchain");
+  const [blockchain, setBlockchain] = useState<BlockchainType[]>([]);
+  const [expandedBlocks, setExpandedBlocks] = useState<Record<number, boolean>>(
+    {}
+  );
+  const [loading, setLoading] = useState<LoadingState>({
     blockchain: false,
     pendingTransactions: false,
     mineBlock: false,
@@ -20,7 +45,7 @@ function MainLayout() {
   });
 
   // Fungsi untuk format tanggal
-  const formatDate = (timestamp) => {
+  const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
     return new Intl.DateTimeFormat("id-ID", {
       day: "2-digit",
@@ -33,7 +58,7 @@ function MainLayout() {
   };
 
   // Fungsi untuk toggle expand/collapse block
-  const toggleBlockExpand = (index) => {
+  const toggleBlockExpand = (index: number) => {
     setExpandedBlocks((prev) => ({
       ...prev,
       [index]: !prev[index],
@@ -45,8 +70,9 @@ function MainLayout() {
     try {
       const response = await fetch("./mock/blockchain.json");
       if (!response.ok) throw new Error("Gagal mengambil data blockchain");
-      const data = await response.json();
-      console.log(data);
+      const data = (await response.json()) as BlockchainType[];
+      if (!Array.isArray(data)) throw new Error("Data blockchain tidak valid");
+
       setBlockchain(data);
     } catch (error) {
       console.log("error", error);
