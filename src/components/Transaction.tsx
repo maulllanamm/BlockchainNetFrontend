@@ -10,12 +10,12 @@ type TransactionData = {
 
 type TransactionProps = {
   transaction: TransactionData;
-  txIndex: number;
+  index: number;
 };
 
-const Transaction: React.FC<TransactionProps> = ({ transaction, txIndex }) => {
+const Transaction: React.FC<TransactionProps> = ({ transaction, index }) => {
   return (
-    <div key={txIndex} className="bg-gray-900 p-3 rounded-md">
+    <div key={index} className="bg-gray-900 p-3 rounded-md">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
           <p className="text-xs text-gray-400">From</p>
