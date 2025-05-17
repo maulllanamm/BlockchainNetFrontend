@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import React from "react";
 import { formatDate } from "../utils/formatDate";
+import Transaction from "./Transaction";
 
 type BlockData = {
   Timestamp: string;
@@ -96,24 +97,7 @@ const Block: React.FC<BlockProps> = ({
           {block.Transactions.length > 0 ? (
             <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
               {block.Transactions.map((tx, txIndex) => (
-                <div key={txIndex} className="bg-gray-900 p-3 rounded-md">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                    <div>
-                      <p className="text-xs text-gray-400">From</p>
-                      <p className="font-mono text-sm truncate">{tx.Sender}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-400">To</p>
-                      <p className="font-mono text-sm truncate">
-                        {tx.Receiver}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-400">Amount</p>
-                      <p className="font-mono text-sm">{tx.Amount}</p>
-                    </div>
-                  </div>
-                </div>
+                <Transaction key={txIndex} transaction={tx} index={txIndex} />
               ))}
             </div>
           ) : (
