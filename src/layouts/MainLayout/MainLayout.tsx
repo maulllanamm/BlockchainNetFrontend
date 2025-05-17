@@ -1,11 +1,4 @@
-import {
-  AlertCircle,
-  ChevronDown,
-  ChevronUp,
-  Clock,
-  Loader2,
-  Plus,
-} from "lucide-react";
+import { AlertCircle, Clock, Loader2, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import Block from "../../components/Block";
 

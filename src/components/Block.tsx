@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
+import { formatDate } from "../utils/formatDate";
 
 type BlockData = {
   Timestamp: string;
@@ -30,19 +31,6 @@ const Block: React.FC<BlockProps> = ({
   isExpanded,
   onToggleExpand,
 }) => {
-  // Fungsi untuk format tanggal
-  const formatDate = (timestamp: string) => {
-    const date = new Date(timestamp);
-    return new Intl.DateTimeFormat("id-ID", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    }).format(date);
-  };
-
   return (
     <div
       key={index}
