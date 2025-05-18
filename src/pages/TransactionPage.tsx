@@ -1,5 +1,6 @@
 import { Clock, Loader2, Plus } from "lucide-react";
 import { useState } from "react";
+import TransactionForm from "../components/TransactionForm";
 
 type LoadingState = {
   blockchain: boolean;
@@ -21,50 +22,7 @@ const Transaction = () => {
       {/* Form tambah transaction */}
       <div className="md:col-span-1 bg-gray-800 border border-gray-700 rounded-lg p-6 shadow-lg h-min">
         <h3 className="text-lg font-medium mb-4">Add New Transaction</h3>
-        <div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">
-              Sender
-            </label>
-            <input
-              type="text"
-              className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Sender address"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">
-              Recipient
-            </label>
-            <input
-              type="text"
-              className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Recipient address"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-400 mb-1">
-              Amount
-            </label>
-            <input
-              type="number"
-              step="0.01"
-              className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Amount"
-            />
-          </div>
-          <button
-            disabled={loading.addTransaction}
-            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 p-2 rounded-md flex justify-center items-center gap-2 transition-all disabled:opacity-50"
-          >
-            {loading.addTransaction ? (
-              <Loader2 className="animate-spin" size={18} />
-            ) : (
-              <Plus size={18} />
-            )}
-            Add Transaction
-          </button>
-        </div>
+        <TransactionForm loading="loading" />
       </div>
 
       {/* Pending transactions */}

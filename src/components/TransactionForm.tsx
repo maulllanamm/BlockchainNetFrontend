@@ -1,0 +1,87 @@
+import { Loader2, Plus } from "lucide-react";
+import { useForm } from "react-hook-form";
+
+type FormValues = {
+  sender: string;
+  recipient: string;
+  amount: number;
+};
+
+const TransactionForm = ({ loading }) => {
+  // Inisialisasi useForm
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  // Fungsi yang dijalankan saat form berhasil disubmit
+  const onSubmit = (data: FormValues) => {
+    alert(JSON.stringify(data));
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          Sender*
+        </label>
+        <input
+          id="sender"
+          {...register("sender", { required: "Sender is required" })}
+          type="text"
+          className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+          placeholder="Sender address"
+        />
+        {errors.sender && (
+          <p style={{ color: "red" }}>{errors.sender.message}</p>
+        )}
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          Recipient*
+        </label>
+        <input
+          id="recipient"
+          {...register("recipient", { required: "Recipient is required" })}
+          type="text"
+          className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+          placeholder="Recipient address"
+        />
+        {errors.recipient && (
+          <p style={{ color: "red" }}>{errors.recipient.message}</p>
+        )}
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          Amount*
+        </label>
+        <input
+          id="amount"
+          {...register("amount", { required: "amount is required" })}
+          type="number"
+          step="0.01"
+          className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+          placeholder="Amount"
+        />
+        {errors.amount && (
+          <p style={{ color: "red" }}>{errors.amount.message}</p>
+        )}
+      </div>
+      <button
+        type="submit"
+        disabled={loading.addTransaction}
+        className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 p-2 rounded-md flex justify-center items-center gap-2 transition-all disabled:opacity-50"
+      >
+        {loading.addTransaction ? (
+          <Loader2 className="animate-spin" size={18} />
+        ) : (
+          <Plus size={18} />
+        )}
+        Add Transaction
+      </button>
+    </form>
+  );
+};
+
+export default TransactionForm;
