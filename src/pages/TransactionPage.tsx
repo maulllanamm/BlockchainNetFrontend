@@ -9,7 +9,7 @@ type LoadingState = {
   addTransaction: boolean;
 };
 
-const Transaction = () => {
+const TransactionPage = () => {
   const [loading, setLoading] = useState<LoadingState>({
     blockchain: false,
     pendingTransactions: false,
@@ -64,4 +64,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default TransactionPage;

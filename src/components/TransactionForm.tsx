@@ -1,6 +1,6 @@
 import { Loader2, Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
-import postTransaction from "../services/api";
+import { postTransaction } from "../services/api";
 
 type FormValues = {
   sender: string;

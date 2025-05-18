@@ -25,7 +25,7 @@ type LoadingState = {
   addTransaction: boolean;
 };
 
-const Blockchain = () => {
+const BlockchainPage = () => {
   const [blockchain, setBlockchain] = useState<BlockData[]>([]);
   const [expandedBlocks, setExpandedBlocks] = useState<Record<number, boolean>>(
     {}
@@ -104,4 +104,4 @@ const Blockchain = () => {
   );
 };
 
-export default Blockchain;
+export default BlockchainPage;

@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import MainLayout from "./layouts/MainLayout";
-import Blockchain from "./pages/BlockchainPage";
-import Transaction from "./pages/TransactionPage";
+import BlockchainPage from "./pages/BlockchainPage";
+import TransactionPage from "./pages/TransactionPage";
+import KeypairPage from "./pages/KeypairPage";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Navigate to="/blockchain" replace />} />
-          <Route path="/blockchain" element={<Blockchain />} />
-          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/blockchain" element={<BlockchainPage />} />
+          <Route path="/transaction" element={<TransactionPage />} />
+          <Route path="/keypair" element={<KeypairPage />} />
         </Route>
       </Routes>
     </div>
