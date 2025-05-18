@@ -6,6 +6,8 @@ type FormValues = {
   sender: string;
   receiver: string;
   amount: number;
+  publicKey: string;
+  signature: string;
 };
 
 const TransactionForm = ({ loading }) => {
@@ -39,6 +41,7 @@ const TransactionForm = ({ loading }) => {
           <p style={{ color: "red" }}>{errors.sender.message}</p>
         )}
       </div>
+
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-400 mb-1">
           receiver*
@@ -54,6 +57,7 @@ const TransactionForm = ({ loading }) => {
           <p style={{ color: "red" }}>{errors.receiver.message}</p>
         )}
       </div>
+
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-400 mb-1">
           Amount*
@@ -70,6 +74,33 @@ const TransactionForm = ({ loading }) => {
           <p style={{ color: "red" }}>{errors.amount.message}</p>
         )}
       </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          Public Key*
+        </label>
+        <input
+          id="publicKey"
+          {...register("publicKey", { required: "Public key is required" })}
+          type="text"
+          placeholder="MFkwEwYHKoZIzj0C..."
+          className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block text-sm font-medium text-gray-400 mb-1">
+          Signature*
+        </label>
+        <input
+          id="signature"
+          type="text"
+          {...register("signature", { required: "SIgnature is required" })}
+          placeholder="PV9z+X4uuiasdyWETYsd...."
+          className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+        />
+      </div>
+
       <button
         type="submit"
         disabled={loading.addTransaction}

@@ -93,6 +93,7 @@ const SignPage = () => {
             id="privateKey"
             {...register("privateKey", { required: "Private key is required" })}
             type="text"
+            placeholder="MHcCAQEEIJfH1tnHo9N9LS0Z3..."
             className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
           />
         </div>

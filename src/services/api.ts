@@ -5,8 +5,10 @@ const apiUrl = import.meta.env.VITE_API_BASE_URL_BACKEND;
 
 export type TransactionValue = {
   sender: string;
-  recipient: string;
+  receiver: string;
   amount: number;
+  publicKey: string;
+  signature: string;
 };
 
 export type SignValues = {
