@@ -1,6 +1,7 @@
 import { AlertCircle, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Block from "../components/Block";
+import { getBlocks } from "../services/api";
 
 type Transaction = {
   PublicKey: string;
@@ -11,10 +12,10 @@ type Transaction = {
 };
 
 type BlockData = {
-  Timestamp: string;
-  Transactions: Transaction[];
-  PreviousHash: string;
-  Hash: string;
+  timestamp: string;
+  transactions: Transaction[];
+  previousHash: string;
+  hash: string;
   nonce: number;
 };
 
@@ -48,9 +49,11 @@ const BlockchainPage = () => {
   const fetchBlockchain = async () => {
     setLoading((prev) => ({ ...prev, blockchain: true }));
     try {
-      const response = await fetch("./mock/blockchain.json");
-      if (!response.ok) throw new Error("Gagal mengambil data blockchain");
-      const data = (await response.json()) as BlockData[];
+      const response = await getBlocks();
+      console.log(response);
+      if (!response.success) throw new Error("Gagal mengambil data blockchain");
+      const data = (await response.data) as BlockData[];
+      console.log(data);
       if (!Array.isArray(data)) throw new Error("Data blockchain tidak valid");
 
       setBlockchain(data);

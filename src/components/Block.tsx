@@ -4,10 +4,10 @@ import { formatDate } from "../utils/formatDate";
 import Transaction from "./Transaction";
 
 type BlockData = {
-  Timestamp: string;
-  Transactions: Transaction[];
-  PreviousHash: string;
-  Hash: string;
+  timestamp: string;
+  transactions: Transaction[];
+  previousHash: string;
+  hash: string;
   nonce: number;
 };
 
@@ -48,7 +48,7 @@ const Block: React.FC<BlockProps> = ({
           <div>
             <h3 className="font-medium">Block #</h3>
             <p className="text-sm text-gray-400">
-              {formatDate(block.Timestamp)}
+              {formatDate(block.timestamp)}
             </p>
           </div>
         </div>
@@ -56,12 +56,12 @@ const Block: React.FC<BlockProps> = ({
           <div className="hidden sm:block">
             <p className="text-sm text-gray-400">Hash</p>
             <p className="font-mono text-gray-300 text-sm truncate w-32">
-              {block.Hash.substring(0, 16)}...
+              {block.hash.substring(0, 16)}...
             </p>
           </div>
           <div className="hidden md:block">
             <p className="text-sm text-gray-400">Transactions</p>
-            <p className="text-gray-300">{block.Transactions.length}</p>
+            <p className="text-gray-300">{block.Transactions}</p>
           </div>
           {isExpanded ? (
             <ChevronUp size={20} className="text-gray-400" />
@@ -76,12 +76,12 @@ const Block: React.FC<BlockProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="bg-gray-900 p-3 rounded-md">
               <p className="text-sm text-gray-400 mb-1">Hash</p>
-              <p className="font-mono text-sm break-all">{block.Hash}</p>
+              <p className="font-mono text-sm break-all">{block.hash}</p>
             </div>
             <div className="bg-gray-900 p-3 rounded-md">
               <p className="text-sm text-gray-400 mb-1">Previous Hash</p>
               <p className="font-mono text-sm break-all">
-                {block.PreviousHash}
+                {block.previousHash}
               </p>
             </div>
           </div>
@@ -92,9 +92,9 @@ const Block: React.FC<BlockProps> = ({
           </div>
 
           <h4 className="font-medium mb-2">
-            Transactions ({block.Transactions.length})
+            Transactions ({block.Transactions})
           </h4>
-          {block.Transactions.length > 0 ? (
+          {block.Transactions > 0 ? (
             <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
               {block.Transactions.map((tx, txIndex) => (
                 <Transaction key={txIndex} transaction={tx} index={txIndex} />
