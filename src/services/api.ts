@@ -9,6 +9,12 @@ export type TransactionValue = {
   amount: number;
 };
 
+export type SignValues = {
+  sender: string;
+  receiver: string;
+  amount: number;
+};
+
 // Buat instance axios (opsional tapi berguna untuk config global)
 const apiClient = axios.create({
   baseURL: apiUrl,
@@ -23,7 +29,6 @@ export const postTransaction = async (data: TransactionValue) => {
     return response.data;
   } catch (error) {
     console.error("Error in postTransaction:", error);
-    alert("Transaksi gagal dikirim.");
   }
 };
 
@@ -33,6 +38,18 @@ export const postKeypair = async () => {
     return response.data;
   } catch (error) {
     console.error("Error in postKeypair:", error);
-    alert("Key pair gagal digenerate.");
+  }
+};
+
+export const postSign = async (data: SignValues, privateKey: string) => {
+  try {
+    const response = await apiClient.post("/wallets/sign", data, {
+      headers: {
+        "x-private-key": privateKey,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error in postSign:", error);
   }
 };

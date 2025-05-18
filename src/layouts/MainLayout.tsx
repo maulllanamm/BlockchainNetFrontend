@@ -40,6 +40,18 @@ function MainLayout() {
         >
           Keypair
         </NavLink>
+        <NavLink
+          to={"/sign"}
+          className={({ isActive }) =>
+            `py-3 px-6 font-medium ${
+              isActive
+                ? "text-blue-400 border-b-2 border-blue-400"
+                : "text-gray-400 hover:text-gray-300"
+            }`
+          }
+        >
+          Sign Transaction
+        </NavLink>
       </div>
       <Outlet />
     </main>
