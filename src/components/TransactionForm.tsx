@@ -1,9 +1,10 @@
 import { Loader2, Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
+import postTransaction from "../services/api";
 
 type FormValues = {
   sender: string;
-  recipient: string;
+  receiver: string;
   amount: number;
 };
 
@@ -16,8 +17,9 @@ const TransactionForm = ({ loading }) => {
   } = useForm<FormValues>();
 
   // Fungsi yang dijalankan saat form berhasil disubmit
-  const onSubmit = (data: FormValues) => {
-    alert(JSON.stringify(data));
+  const onSubmit = async (data: FormValues) => {
+    const result = await postTransaction(data);
+    console.log(result);
   };
 
   return (
@@ -39,17 +41,17 @@ const TransactionForm = ({ loading }) => {
       </div>
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-400 mb-1">
-          Recipient*
+          receiver*
         </label>
         <input
-          id="recipient"
-          {...register("recipient", { required: "Recipient is required" })}
+          id="receiver"
+          {...register("receiver", { required: "Receiver is required" })}
           type="text"
           className="w-full p-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-          placeholder="Recipient address"
+          placeholder="receiver address"
         />
-        {errors.recipient && (
-          <p style={{ color: "red" }}>{errors.recipient.message}</p>
+        {errors.receiver && (
+          <p style={{ color: "red" }}>{errors.receiver.message}</p>
         )}
       </div>
       <div className="mb-4">
