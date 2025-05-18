@@ -25,6 +25,19 @@ const apiClient = axios.create({
   },
 });
 
+export const postMining = async (minerAddress: string) => {
+  try {
+    const response = await apiClient.post("/blocks/mine", null, {
+      headers: {
+        "x-miner-address": minerAddress,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error in postMining:", error);
+  }
+};
+
 export const postTransaction = async (data: TransactionValue) => {
   try {
     const response = await apiClient.post("/transactions", data);
