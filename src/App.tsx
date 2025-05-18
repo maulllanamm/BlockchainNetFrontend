@@ -1,11 +1,18 @@
-import Header from "./layouts/MainLayout/Header";
-import MainLayout from "./layouts/MainLayout/MainLayout";
+import { Navigate, Route, Router, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import MainLayout from "./layouts/MainLayout";
+import Blockchain from "./pages/Blockchain";
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <Header />
-      <MainLayout />
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Navigate to="/blockchain" replace />} />
+          <Route path="/blockchain" element={<Blockchain />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
