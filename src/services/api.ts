@@ -25,6 +25,15 @@ const apiClient = axios.create({
   },
 });
 
+export const getAmount = async (address: string) => {
+  try {
+    const response = await apiClient.get(`/wallets/${address}/balance`);
+    return response.data;
+  } catch (error) {
+    console.error("Error in getAmount:", error);
+  }
+};
+
 export const getBlocks = async () => {
   try {
     const response = await apiClient.get("/blocks");

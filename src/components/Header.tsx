@@ -17,8 +17,7 @@ function Header() {
     if (mineAddress.trim() !== "") {
       setIsMining(true);
       const result = await postMining(mineAddress);
-      console.log(result);
-      setIsMining(false);
+      closeModal();
     }
   };
 

@@ -5,6 +5,7 @@ import BlockchainPage from "./pages/BlockchainPage";
 import TransactionPage from "./pages/TransactionPage";
 import KeypairPage from "./pages/KeypairPage";
 import SignPage from "./pages/SignPage";
+import WalletPage from "./pages/WalletPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Navigate to="/blockchain" replace />} />
           <Route path="/blockchain" element={<BlockchainPage />} />
           <Route path="/transaction" element={<TransactionPage />} />
+          <Route path="/wallets" element={<WalletPage />} />
           <Route path="/keypair" element={<KeypairPage />} />
           <Route path="/sign" element={<SignPage />} />
         </Route>

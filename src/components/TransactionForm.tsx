@@ -20,8 +20,8 @@ const TransactionForm = ({ loading }) => {
 
   // Fungsi yang dijalankan saat form berhasil disubmit
   const onSubmit = async (data: FormValues) => {
+    console.log(data);
     const result = await postTransaction(data);
-    console.log(result);
   };
 
   return (

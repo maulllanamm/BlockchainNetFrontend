@@ -29,6 +29,18 @@ function MainLayout() {
           Pending Transactions
         </NavLink>
         <NavLink
+          to={"/wallets"}
+          className={({ isActive }) =>
+            `py-3 px-6 font-medium ${
+              isActive
+                ? "text-blue-400 border-b-2 border-blue-400"
+                : "text-gray-400 hover:text-gray-300"
+            }`
+          }
+        >
+          Wallets
+        </NavLink>
+        <NavLink
           to={"/keypair"}
           className={({ isActive }) =>
             `py-3 px-6 font-medium ${
