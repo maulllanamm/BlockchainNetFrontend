@@ -43,10 +43,10 @@ const Block: React.FC<BlockProps> = ({
       >
         <div className="flex items-center gap-3">
           <span className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-md font-mono">
-            #{index}
+            {index + 1}
           </span>
           <div>
-            <h3 className="font-medium">Block #</h3>
+            <h3 className="font-medium">Block </h3>
             <p className="text-sm text-gray-400">
               {formatDate(block.timestamp)}
             </p>
@@ -61,7 +61,7 @@ const Block: React.FC<BlockProps> = ({
           </div>
           <div className="hidden md:block">
             <p className="text-sm text-gray-400">Transactions</p>
-            <p className="text-gray-300">{block.Transactions}</p>
+            <p className="text-gray-300">{block.transactions.length}</p>
           </div>
           {isExpanded ? (
             <ChevronUp size={20} className="text-gray-400" />
@@ -92,11 +92,11 @@ const Block: React.FC<BlockProps> = ({
           </div>
 
           <h4 className="font-medium mb-2">
-            Transactions ({block.Transactions})
+            Transactions ({block.transactions.length})
           </h4>
-          {block.Transactions > 0 ? (
+          {block.transactions.length > 0 ? (
             <div className="space-y-2 max-h-64 overflow-y-auto pr-2">
-              {block.Transactions.map((tx, txIndex) => (
+              {block.transactions.map((tx, txIndex) => (
                 <Transaction key={txIndex} transaction={tx} index={txIndex} />
               ))}
             </div>
