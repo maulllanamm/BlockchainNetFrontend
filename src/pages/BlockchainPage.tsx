@@ -50,7 +50,6 @@ const BlockchainPage = () => {
     setLoading((prev) => ({ ...prev, blockchain: true }));
     try {
       const response = await getBlocks();
-      console.log(response);
       if (!response.success) throw new Error("Gagal mengambil data blockchain");
       const data = (await response.data) as BlockData[];
       console.log(data);

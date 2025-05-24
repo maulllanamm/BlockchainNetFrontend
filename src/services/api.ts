@@ -34,6 +34,15 @@ export const getAmount = async (address: string) => {
   }
 };
 
+export const getTransactions = async (address: string) => {
+  try {
+    const response = await apiClient.get(`/wallets/${address}/transactions`);
+    return response.data;
+  } catch (error) {
+    console.error("Error in getTransactions:", error);
+  }
+};
+
 export const getBlocks = async () => {
   try {
     const response = await apiClient.get("/blocks");
@@ -45,11 +54,9 @@ export const getBlocks = async () => {
 
 export const postMining = async (minerAddress: string) => {
   try {
-    const response = await apiClient.post("/blocks/mine", null, {
-      headers: {
-        "x-miner-address": minerAddress,
-      },
-    });
+    const response = await apiClient.post(
+      `/blocks/mine?minerAddress=${encodeURIComponent(minerAddress)}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error in postMining:", error);
