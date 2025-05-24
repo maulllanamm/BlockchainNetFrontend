@@ -117,8 +117,6 @@ function Header() {
           </div>
         </div>
       )}
-
-      {/* CSS animations sudah ditangani melalui Tailwind classes */}
     </>
   );
 }

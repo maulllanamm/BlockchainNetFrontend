@@ -43,6 +43,15 @@ export const getTransactions = async (address: string) => {
   }
 };
 
+export const getPendingTransactions = async () => {
+  try {
+    const response = await apiClient.get(`/transactions/pending`);
+    return response.data;
+  } catch (error) {
+    console.error("Error in getPendingTransactions:", error);
+  }
+};
+
 export const getBlocks = async () => {
   try {
     const response = await apiClient.get("/blocks");
